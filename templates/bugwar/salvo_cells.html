@@ -1,0 +1,25 @@
+<td class="label {% if salvo.passes.count %}pass{% endif %}">
+    <a href="{{settings.BUGWAR_URL}}/results/?salvo_id={{salvo.id}}&label=pass">
+        {{salvo.passes.count|default:""}}
+    </a>
+</td>
+<td class="label {% if salvo.fails.count %}fail{% endif %}">
+    <a href="{{settings.BUGWAR_URL}}/results/?salvo_id={{salvo.id}}&label=fail">
+        {{salvo.fails.count|default:""}}
+    </a>
+</td>
+<td class="label {% if salvo.warns.count %}warn{% endif %}">
+    <a href="{{settings.BUGWAR_URL}}/results/?salvo_id={{salvo.id}}&label=warn">
+        {{salvo.warns.count|default:""}}
+    </a>
+</td>
+<td class="label {% if salvo.errors.count %}error{% endif %}">
+    <a href="{{settings.BUGWAR_URL}}/results/?salvo_id={{salvo.id}}&label=error">
+        {{salvo.errors.count|default:""}}
+    </a>
+</td>
+<td class="label {% if salvo.measures.count %}info{% endif %}">
+    <a href="{{settings.BUGWAR_URL}}/measurements/?salvo_id={{salvo.id}}">
+        {{salvo.measures.count|default:""}}
+    </a>
+</td>

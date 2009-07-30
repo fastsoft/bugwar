@@ -1,0 +1,149 @@
+
+body {
+    min-height: 100%;
+    margin-bottom: 3em;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table.form > tbody > tr > th,
+table.record > tbody > tr > th {
+    text-align: right;
+}
+
+table.table > tbody > tr > th {
+    text-shadow: #888888 1px 1px;
+    background-image: url(th.gif);
+    background-repeat: repeat-x;
+    background-color: #bbbbbb;
+    color: #ffffff;
+}
+
+table > tr > th * {
+    color: #3333ff;
+}
+
+body table tr th.warn {
+    text-shadow: #cccccc 1px 1px;
+}
+
+body table tr td, body table tr th {
+    border-bottom: solid 1px #aaaaaa;
+    border-right: solid 1px #dddddd;
+    padding: 2px 2ex;
+    white-space: nowrap;
+}
+
+.label {
+    background-position: 2px center;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    min-height: 16px;
+}
+
+.label span {
+    display: none;
+}
+
+.disabled {
+    -webkit-opacity: .25;
+    -moz-opacity: .25;
+    filter: alpha(opacity = 25);
+    opacity: .25;
+}
+
+.label.zoom-in {
+    background-image: url(/media/chiron/icons/zoom_in.png);
+}
+
+.label.zoom-out {
+    background-image: url(/media/chiron/icons/zoom_out.png);
+}
+
+.label.next {
+    background-image: url(/media/chiron/icons/resultset_next.png);
+}
+
+.label.previous {
+    background-image: url(/media/chiron/icons/resultset_previous.png);
+}
+
+.label.first {
+    background-image: url(/media/chiron/icons/resultset_first.png);
+}
+
+.label.last {
+    background-image: url(/media/chiron/icons/resultset_last.png);
+}
+
+.label.attach {
+    background-image: url(/media/chiron/icons/attach.png);
+}
+
+
+.paginate {
+    display: table;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    padding: 8px 15px;
+    border-top: solid 1px #aaaaaa;
+    border-right: solid 1px #aaaaaa;
+    background-color: #eeeeee;
+    border-top-right-radius: 15px;
+    -moz-border-radius-topright: 15px;
+    -webkit-border-top-right-radius: 15px;
+
+}
+.paginate > * {
+    display: table-cell;
+    padding: 0 .5em;
+}
+.paginate_body {
+    text-align: center;
+    width: 300px;
+    min-width: 300px;
+}
+
+.paginate form {
+    margin: 0;
+    padding; 0;
+}
+
+.paginate input {
+    margin: 0;
+}
+
+#id_page_number_input {
+    width: 3em;
+}
+
+#navigation {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    padding: 8px 15px;
+    border-top: solid 1px #aaaaaa;
+    border-left: solid 1px #aaaaaa;
+    background-color: #eeeeee;
+    border-top-left-radius: 15px;
+    -moz-border-radius-topleft: 15px;
+    -webkit-border-top-left-radius: 15px;
+
+    -webkit-opacity: .8;
+    -moz-opacity: .8;
+    filter: alpha(opacity = 80);
+    opacity: .8;
+
+}
+
+#spacer {
+    height: 3em;
+}
+
+.salvo_heading {
+    font-family: Monaco, Courier New, monospace;
+}

@@ -1,0 +1,64 @@
+{% extends "bugwar/base.html" %}
+{% block content %}
+    {% spaceless %}
+    {% with objects as results %}
+    <div id="buffer">
+        {% for result in results %}
+        <div class="label code message {{result.label}}">
+
+            <a name="{{result.name|escape}}"></a>
+            <span class="datetime">{{result.datetime}} - </span>
+
+            {% if not salvo %}
+            {% if not battery %}
+            <a class="label zoom-in" href="{{url.page.battery_name}}={{result.salvo.battery.name|urlencode}}"><span><abbr title="View only battery {{result.salvo.battery.name|escape}}">+</abbr></span></a><a href="{{settings.BUGWAR_URL}}/battery/{{result.salvo.battery.name|urlencode}}">{{result.salvo.battery.name|escape}}</a>
+            -
+            {% endif %}
+
+            <a class="label zoom-in" href="{{url.page.salvo_id}}={{result.salvo_id}}"><span><abbr title="View only salvo {{result.salvo.id}}">+</abbr></span></a><a href="{{settings.BUGWAR_URL}}/salvo/{{result.salvo_id}}">{{result.salvo_id}}</a>
+            -
+            {% endif %}
+
+            {% if not label %}<a class="label zoom-in" href="{{url.page.label}}={{result.label}}"><span><abbr title="View only {{result.label|upper}} results">+</abbr></a>{% endif %}<a href="{{settings.BUGWAR_URL}}/result/{{result.id}}">{{result.label|upper}}</a>
+            -
+
+            {{result.name|escape}}
+
+            {% if result.message %}
+            -
+            {{result.message|escape}}
+            {% endif %}
+
+        </div>
+
+        {% for log in result.logs.all %}
+        <div class="label code message {{log.label}}">
+        <span class="datetime">{{log.datetime}} - </span>
+        {{log.message|escape}}
+        </div>
+        {% endfor %}
+
+        {% for attachment in result.attachments.all %}
+        <div class="label code attach">
+        <a href=""></a>
+        </div>
+        {% endfor %}
+
+        {% endfor %}
+    </div>
+    {% endwith %}
+    {% endspaceless %}
+{% endblock %}
+{% block tabs %}
+
+    {% if battery %}
+    <a class="label zoom-out" href="{{url.page.battery_name}}">all batteries</a> -
+    &mdash;
+    {% endif %}
+
+    {% if salvo %}
+    <a class="label zoom-out" href="{{url.page.salvo_id}}">all salvos</a> -
+    &mdash;
+    {% endif %}
+
+{% endblock %}

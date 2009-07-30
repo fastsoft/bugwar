@@ -1,0 +1,15 @@
+
+# this is the projects file for Bugwar assuming it's in a stand-alone
+# Django project.  Otherwise, you would include('bugwar.urls') somewhere
+# in your site's urls configuration and not use this file at all.
+
+from django.conf.urls.defaults import *
+
+urlpatterns = patterns('',
+    # Example:
+    (r'^bugwar/', include('bugwar.urls')),
+
+    # Uncomment this for admin:
+#     (r'^admin/', include('django.contrib.admin.urls')),
+)
+

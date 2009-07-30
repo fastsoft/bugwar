@@ -1,0 +1,33 @@
+{% extends "bugwar/base.html" %}
+{% block content %}
+    <table class="table">
+        <tr>
+            <th>battery</th>
+            <th>salvos</th>
+            <th>latest&nbsp;salvo</th>
+            {% include "bugwar/salvo_headings.html" %}
+        </tr>
+        {% for battery in objects %}
+        <tr>
+            <td><a href="{{settings.BUGWAR_URL}}/battery/{{battery.name|urlencode}}">{{battery.name|escape}}</td>
+            <td><a href="{{settings.BUGWAR_URL}}/salvos/?where=battery.name,exact,{{battery.name|urlencode}}">{{battery.salvos.count}}</a></td>
+            <td><a href="{{settings.BUGWAR_URL}}/salvo/{{battery.latest_salvo.id|urlencode}}">{{battery.latest_salvo.start|default_if_none:""}}</a></td>
+            {% with battery.latest_salvo as salvo %}
+            {% include "bugwar/salvo_cells.html" %}
+            {% endwith %}
+        </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td>
+                <abbr title="current time">{% now "Y-m-d H:i:s" %}</abbr>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+{% endblock %}

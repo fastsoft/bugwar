@@ -1,0 +1,20 @@
+#!/usr/bin/env python
+
+from bugwar_api import *
+from sys import argv
+
+if len(argv) == 4:
+	id = argv[1]
+	name = argv[2]
+	status = argv[3]
+	salvo = Salvo.objects.get(id)
+
+	try:
+		status = float(status)
+		salvo.measure(name, status)
+	except ValueError:
+		status = status.lower()
+        salvo.result(status, name)
+
+else:
+	print "usage: bugwar_result salvo_id name status"

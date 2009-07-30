@@ -1,0 +1,45 @@
+{% extends "bugwar/base.html" %}
+{% block content %}
+<table class="table">
+    <tr>
+        <th>assault report</th>
+        {% for salvo in salvos %}
+        <th><a href="{{settings.BUGWAR_URL}}/salvo/{{salvo.id}}">
+            <abbr title="{{salvo.id}}: {{salvo.start}}">{{salvo.start|date:"D/G:i"}}</abbr></a></th>
+        {% endfor %}
+    </tr>
+    {% for row in results %}
+    <tr>
+        <td><nobr><a href="{{settings.BUGWAR_URL}}/results/?where=name,exact,{{row.name}}&where=salvo.battery.name,exact,{{object.name}}">{{row.name}}</a></nobr></td>
+        {% for result in row.results %}
+        {% if result %}
+        <td class="label {{result.label}}">
+            <a href="{{settings.BUGWAR_URL}}/result/{{result.id}}">
+                {% if result.message %}<abbr title="{{result.message}}">{% endif %}
+                {{result.label|upper}}{% if result.message %}&dagger;</abbr>{% endif %}
+            </a>
+        </td>
+        {% else %}
+        <td class="label warn"><abbr title="No result gathered.">none</abbr></td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    {% for row in measures %}
+    <tr>
+        <td><nobr><a href="{{settings.BUGWAR_URL}}/measurements/?where=name,exact,{{row.name}}&where=salvo.battery.name,exact,{{object.name}}">{{row.name}}</a></nobr></td>
+        {% for measure in row.measures %}
+        {% if measure %}
+        <td class="label info">
+            <a href="{{settings.BUGWAR_URL}}/measurement/{{measure.id}}">
+                {{measure.value}}
+            </a>
+        </td>
+        {% else %}
+        <td class="label warn"><abbr title="No measurement recorded.">none</abbr></td>
+        {% endif %}
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

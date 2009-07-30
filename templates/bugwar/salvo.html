@@ -1,0 +1,96 @@
+{% extends "bugwar/base.html" %}
+{% block content %}
+    {% with object as salvo %}
+
+    <table class="record">
+        <tr>
+            <th>id:</th>
+            <td>{{salvo.id}}</td>
+        </tr>
+        <tr>
+            <th>battery:</th>
+            <td><a href="{{settings.BUGWAR_URL}}/battery/{{salvo.battery.name|urlencode}}">
+                {{salvo.battery.name}}
+            </a></td>
+        </tr>
+        {% if salvo.owner %}
+        <tr>
+            <th>owner:</th>
+            <td>{{salvo.owner}}</td>
+        </tr>
+        {% endif %}
+        <tr>
+            <th>start:</th>
+            <td>{{salvo.start|default_if_none:"not started"}}</td>
+        </tr>
+        <tr>
+            <th>stop:</th>
+            <td>{{salvo.stop|default_if_none:"presumably still running"}}</td>
+        </tr>
+        {% if salvo.url %}
+        <tr>
+            <th>url:</th>
+            <td><a href="{{salvo.url|escape}}">{{salvo.url|escape}}</a></td>
+        </tr>
+        {% endif %}
+        {% if salvo.revision %}
+        <tr>
+            <th>revision:</th>
+            <td><a href="http://projects.fastsoft.com/trac/browser/?rev={{salvo.revision|escape}}">{{salvo.revision}}</a></td>
+        </tr>
+        {% endif %}
+        {% for item in salvo.configuration %}
+        <tr>
+            <th>{{item.0|escape}}:</th>
+            <td>{{item.1|escape}}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th>passes:</th>
+            <td class="label {% if salvo.passes.count %}pass{% endif %}">
+                <a href="{{settings.BUGWAR_URL}}/results/?salvo_id={{salvo.id}}&label=pass">
+                    {{salvo.passes.count|default:""}}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th>fails:</th>
+            <td class="label {% if salvo.fails.count %}fail{% endif %}">
+                <a href="{{settings.BUGWAR_URL}}/results/?salvo_id={{salvo.id}}&label=fail">
+                    {{salvo.fails.count|default:""}}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th>warnings:</th>
+            <td class="label {% if salvo.warns.count %}warn{% endif %}">
+                <a href="{{settings.BUGWAR_URL}}/results/?salvo_id={{salvo.id}}&label=warn">
+                    {{salvo.warns.count|default:""}}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th>errors:</th>
+            <td class="label {% if salvo.errors.count %}error{% endif %}">
+                <a href="{{settings.BUGWAR_URL}}/results/?salvo_id={{salvo.id}}&label=error">
+                    {{salvo.errors.count|default:""}}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th>measurements:</th>
+            <td class="label {% if salvo.measures.count %}info{% endif %}">
+                <a href="{{settings.BUGWAR_URL}}/measurements/?salvo_id={{salvo.id}}">
+                    {{salvo.measures.count|default:""}}
+                </a>
+            </td>
+        </tr>
+    </table>
+
+    <p><ul>
+        <li><a href="{{settings.BUGWAR_URL}}/timeline/{{salvo.id|escape}}">timeline</a>: view test results, measurements, log messages, and attachments posted to this salvo in <b>chronological</b> order.</li>
+        <li><a href="{{settings.BUGWAR_URL}}/assault/{{salvo.battery.name|escape}}">assault</a>: view results for each salvo in this battery to find <b>regressions</b>.</li>
+    </ul></p>
+
+    {% endwith %}
+{% endblock %}

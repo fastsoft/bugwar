@@ -1,0 +1,15 @@
+{% extends "bugwar/base.html" %}
+{% block content %}
+    {% include "djata/object.raw.html" %}
+    {% with object as battery %}
+    <p><ul>
+        <li><a href="{{settings.BUGWAR_URL}}/salvos/?where=battery.name,exact,{{battery.name|escape}}">salvos</a></li>
+        <li><a href="{{settings.BUGWAR_URL}}/assault/{{battery.name|escape}}">assault</a>:
+            view all test results for each salvo in this battery to find <b>regressions</b></a>
+        </li>
+    </ul></p>
+    <p><ul>
+        <li><a href="{{url.format}}=verify-delete.html">delete this battery</li>
+    </ul></p>
+    {% endwith %}
+{% endblock %}

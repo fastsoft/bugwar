@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <style>@import url(/media/chiron/debug/console.css);</style>
+        <style>@import url(/media/bugwar/console.css);</style>
+    </head>
+    <body>
+        <div id="buffer">
+            {% for result in results %}
+            <div class="label code message {{result.label}}">
+                <span class="datetime">{{result.datetime}} - </span>
+                {% if not salvo %}
+                <span class="salvo"><a href="?salvo_id={{result.salvo_id}}"><abbr title="Run {{result.salvo_id}}">{{result.salvo_id}}</a></a> - </span>
+                {% endif %}
+                {{result.label|upper}} -
+                {{result.name}}
+            </div>
+            {% endfor %}
+        </div>
+        <div id="navigator">
+            {% if salvo %}
+            <nobr>salvo {{salvo.id}} - </nobr>
+            <nobr><a href="?">all salvos</a> - </nobr>
+            <nobr>start: {{salvo.start}} - </nobr>
+            <nobr>stop: {{salvo.stop}} - </nobr>
+            {% endif %}
+        </div>
+        <script>
+            window.scrollTo(0, document.body.scrollHeight);
+        </script>
+    </body>
+</html>

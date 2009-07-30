@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+from bugwar_api import *
+from sys import argv
+
+usage = "usage: bugwar_stop salvo_id"
+
+if len(argv) == 2:
+	try:
+		id = int(argv[1])
+	except ValueError:
+		print usage
+		exit(1)
+	
+	Salvo.objects.get(id).stop()	
+else:
+	print usage
+	exit(1)
+

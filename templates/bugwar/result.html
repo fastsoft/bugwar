@@ -1,0 +1,43 @@
+{% extends "bugwar/base.html" %}
+{% block content %}
+    {% with object as result %}
+
+    <table class="record">
+        <tr>
+            <th>label:</th>
+            <td class="label code {{result.label}}">{{result.label|upper|escape}}</td>
+        </tr>
+        <tr>
+            <th>name:</th>
+            <td>{{result.name|default_if_none:""|escape}}</td>
+        </tr>
+        {% if result.message %}
+        <tr>
+            <th>message:</th>
+            <td>{{result.message|escape|linebreaksbr}}</td>
+        </tr>
+        {% endif %}
+        <tr>
+            <th>datetime:</th>
+            <td>{{result.datetime|default_if_none:""|escape}}</td>
+        </tr>
+        <tr>
+            <th>battery:</th>
+            <td>
+                <a href="{{settings.BUGWAR_URL}}/battery/{{result.salvo.battery.name|urlencode}}">{{result.salvo.battery.name|escape}}</a>
+                <a href="{{settings.BUGWAR_URL}}/assault/{{result.salvo.battery.name|urlencode}}">assault</a>
+            </td>
+        </tr>
+        <tr>
+            <th>salvo:</th>
+            <td>
+                <a href="{{settings.BUGWAR_URL}}/salvo/{{result.salvo.id}}">{{result.salvo.id}}</a>
+                <a href="{{settings.BUGWAR_URL}}/timeline/{{result.salvo.id}}">timeline</a>
+            </td>
+        </tr>
+    </table>
+
+    {% include "bugwar/buffer.html" %}
+
+    {% endwith %}
+{% endblock %}

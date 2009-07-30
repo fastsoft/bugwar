@@ -1,0 +1,100 @@
+
+.bugwar table {
+    border-collapse: collapse;
+}
+
+.bugwar table.tabular td, .bugwar table.tabular th {
+    border: solid #aaaaaa 1px;
+    padding: 2px 4px;
+}
+
+.bugwar table.definition-list th {
+    text-align: right;
+    padding-right: 10px;
+    font-weight: bold !important;
+}
+
+/* labeled messages */
+.bugwar .label {
+    background-position: 2px center;
+    background-repeat: no-repeat;
+    padding-left: 24px !important;
+    border: solid 1px #cccccc;
+}
+
+/* yellow messages */
+.bugwar .error, .bugwar .warn {
+    background-color: #fefbee;
+}
+.bugwar .error {
+    background-image: url(icons/cancel.png);
+    color: red;
+}
+.bugwar .error * {
+    color: red;
+}
+.bugwar .warn {
+    background-image: url(icons/error.png);
+}
+.bugwar .warn * {
+    color: #d5a03c;
+}
+
+/* blue messages */
+.bugwar .info, .bugwar .info *, .bugwar .help, .bugwar .help * {
+    background-color: #7777ff;
+    color: #eee;
+}
+.bugwar .info {
+    background-image: url(icons/information.png);
+}
+.bugwar .help {
+    background-image: url(icons/help.png);
+}
+.bugwar .help > * {
+    width: 500px;
+}
+
+/* gray messages */
+.bugwar .load, .bugwar .module {
+    background-color: #efefef;
+    border-top: solid 1px #ffffff;
+    border-bottom: solid 1px #aaaaaa;
+    color: #777;
+}
+.bugwar .load *, .bugwar .module * {
+    color: #777;
+}
+.bugwar .load {
+    background-image: url(icons/database.png);
+}
+.bugwar .module {
+    background-image: url(icons/brick.png);
+}
+.bugwar .module a {
+    text-decoration: none;
+}
+.bugwar .module a:hover {
+    text-decoration: underline;
+}
+
+/* green messages */
+.bugwar .pass {
+    background-image: url(icons/accept.png);
+    background-color: #33aa33;
+    color: #eee;
+}
+.bugwar .pass * {
+    color: #eee;
+}
+
+/* red messages */
+.bugwar .fail {
+    background-image: url(icons/exclamation.png);
+    background-color: #ff5555;
+    color: #eee;
+}
+.bugwar .fail * {
+    color: #eee;
+}
+

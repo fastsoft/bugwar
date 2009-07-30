@@ -1,0 +1,43 @@
+{% if embed %}
+<style>@import url({{settings.BUGWAR_MEDIA_URL}}/embed.css);</style>
+<div class="bugwar">
+{% endif %}
+{% if not embed %}<html>
+    <head>
+        {% block head %}
+        <title>{% block title %}{{title}}{% endblock %}</title>
+        <style>@import url({{settings.BUGWAR_MEDIA_URL}}/console.css);</style>
+        <style>@import url({{settings.BUGWAR_MEDIA_URL}}/console-chiron.css);</style>
+        {% block meta %}{% endblock %}
+        {% endblock %}
+    </head>
+    <body>
+        <form method="GET" action="{{url}}">
+{% endif %}
+{% block content %}{% endblock %}
+        {% block footer %}{% endblock %}
+        <div id="spacer"></div>
+        <div id="navigation">
+            {% block tabs %}{% endblock %}
+            {% if not embed %}
+            {% include "djata/paginate.html" %}
+            <a href="{{settings.BUGWAR_URL}}/batteries/">Batteries</a> - 
+            <a href="{{settings.BUGWAR_URL}}/salvos/">Salvos</a> - 
+            <a href="{{settings.BUGWAR_URL}}/results/">Results</a> - 
+            <a href="/media/bugwar/documentation/">Documentation</a>
+            {% endif %}
+        </div>
+{% if not embed %}
+        <script>
+            window.scrollTo(
+                document.body.scrollWidth - window.innerWidth,
+                document.body.scrollHeight - window.innerHeight
+            );
+        </script>
+        </form>
+    </body>
+</html>
+{% endif %}
+{% if embed %}
+</div>
+{% endif %}

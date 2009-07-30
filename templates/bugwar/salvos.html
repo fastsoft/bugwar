@@ -1,0 +1,42 @@
+{% extends "bugwar/base.html" %}
+{% block content %}
+    <table class="table">
+        <tr>
+            <th>id</th>
+            <th>start</th>
+            <th>stop</th>
+            <th>url</th>
+            <th>revision</th>
+            <th>battery</th>
+            <th>owner</th>
+            {% include "bugwar/salvo_headings.html" %}
+        </tr>
+        {% for salvo in objects %}
+        <tr>
+            <td><a href="{{settings.BUGWAR_URL}}/salvo/{{salvo.id|urlencode}}">{{salvo.id}}</a></td>
+            <td><nobr>{{salvo.start|default:""|escape}}</nobr></td>
+            <td><nobr>{{salvo.stop|default:""|escape}}</nobr></td>
+            <td><a href="{{salvo.url|escape}}">{{salvo.url_display}}</a></td>
+            <td>{{salvo.revision|default:""|escape}}</td>
+            <td><a href="{{settings.BUGWAR_URL}}/battery/{{salvo.battery.name|urlencode}}">{{salvo.battery.name|escape}}</a></td>
+            <td><a href="?owner_name={{salvo.owner|urlencode}}">{{salvo.owner|default:""|escape}}</a></td>
+            {% include "bugwar/salvo_cells.html" %}
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+{% block tabs %}
+
+    {% if battery %}
+    <a class="label zoom-out" href="?">all salvos</a> -
+    <a href="{{settings.BUGWAR_URL}}/battery/{{battery.name|urlencode}}">battery {{battery.name}}</a>
+    &mdash;
+    {% endif %}
+
+    {% if owner %}
+    <nobr>owner {{owner.username|escape}} - </nobr>
+    <nobr><a href="?">all owners</a></nobr>
+    &mdash;
+    {% endif %}
+
+{% endblock %}

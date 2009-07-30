@@ -1,0 +1,9 @@
+{% extends "bugwar/base.html" %}
+{% block content %}
+    {% include "djata/object.raw.html" %}
+    {% with object as measure %}
+
+    {% include "bugwar/buffer.html" %}
+
+    {% endwith %}
+{% endblock %}

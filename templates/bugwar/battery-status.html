@@ -1,0 +1,88 @@
+{% extends "bugwar/base.html" %}
+{% block content %}
+<table class="definition-list">
+    <tr>
+        <th colspan="2"><a href="{{settings.BUGWAR_URL}}/battery/{{object.name|urlencode}}">{{object.name}}</a></th>
+    </tr>
+    <tr>
+        <th colspan="2">
+            <a href="{{settings.BUGWAR_URL}}/results/?salvo_id={{latest_salvo.id}}">
+                <nobr>latest salvo</nobr>
+            </a>
+        </th>
+    </tr>
+    <tr>
+        <th>start</th>
+        <td><nobr>{{latest_salvo.start}}</nobr></td>
+    </tr>
+    <tr>
+        <th>stop</th>
+        <td><nobr>{{latest_salvo.stop}}</nobr></td>
+    </tr>
+    <tr>
+        <th>duration</th>
+        <td>{{latest_salvo.duration}}</td>
+    </tr>
+    <tr>
+        <th>pass</th>
+        <td class="label {% if latest_salvo.passes.count %}pass{% endif %}">
+            {{latest_salvo.passes.count|default:""}}
+        </td>
+    </tr>
+    <tr>
+        <th>fail</th>
+        <td class="label {% if latest_salvo.fails.count %}fail{% endif %}">
+            {{latest_salvo.fails.count|default:""}}
+        </td>
+    </tr>
+    <tr>
+        <th>error</th>
+        <td class="label {% if latest_salvo.errors.count %}error{% endif %}">
+            {{latest_salvo.errors.count|default:""}}
+        </td>
+    </tr>
+    <tr>
+        <th>warn</th>
+        <td class="label {% if latest_salvo.warns.count %}warn{% endif %}">
+            {{latest_salvo.warns.count|default:""}}
+        </td>
+    </tr>
+    {% if salvo_in_progress %}
+    <tr>
+        <th colspan="2">
+            <a href="{{settings.BUGWAR_URL}}/results/?salvo_id={{salvo_in_progress.id}}">
+                <nobr>salvo in progress</nobr>
+            </a>
+        </th>
+    </tr>
+    <tr>
+        <th>start</th>
+        <td>{{salvo_in_progress.start}}</td>
+    </tr>
+    <tr>
+        <th>pass</th>
+        <td class="label {% if salvo_in_progress.passes.count %}pass{% endif %}">
+            {{salvo_in_progress.passes.count}}
+        </td>
+    </tr>
+    <tr>
+        <th>fail</th>
+        <td class="label {% if salvo_in_progress.fails.count %}fail{% endif %}">
+            {{salvo_in_progress.fails.count}}
+        </td>
+    </tr>
+    <tr>
+        <th>error</th>
+        <td class="label {% if salvo_in_progress.errors.count %}error{% endif %}">
+            {{salvo_in_progress.errors.count}}
+        </td>
+    </tr>
+    <tr>
+        <th>warn</th>
+        <td class="label {% if salvo_in_progress.warns.count %}warn{% endif %}">
+            {{salvo_in_progress.warns.count}}
+        </td>
+    </tr>
+    {% endif %}
+</table>
+{% endblock %}

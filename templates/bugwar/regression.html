@@ -1,0 +1,23 @@
+{% extends "bugwar/base.html" %}
+{% block content %}
+    <table class="tabular">
+        <tr>
+            <th></th>
+            {% for salvo in salvos %}
+            <th><a href="{{settings.BUGWAR_URL}}/results/?salvo_id={{salvo.id}}">{{salvo.id}}</a></th>
+            {% endfor %}
+        </tr>
+        {% for row in rows %}
+        <tr>
+            <td>{{row.name}}</td>
+            {% for result in row.results %}
+            {% if result %}
+            <td class="label {{result.label}}">{{result.label|upper}}</td>
+            {% else %}
+            <td class="label warn"><abbr title="This test did not fire.">none</abbr></td>
+            {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

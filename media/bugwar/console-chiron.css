@@ -1,0 +1,198 @@
+
+/*
+
+    Color Reference
+    ===============
+
+    green (pass):
+        background:
+        foreground: #ffffff
+    red (error):
+        background:
+        foreground: #ffffff
+    yellow (warning):
+        background: #f3d856
+        foreground: #d5a03c
+    blue (information, help):
+        background: #7777ff;
+        foreground: #ffffff
+    gray (meta):
+        background: #7777ff
+        foreground:
+
+    green (command):
+        background: #ffffff
+        foreground: #00aa00;
+    blue (value):
+        background: #ffffff
+        foreground: #0000dd;
+
+*/
+
+body {
+    background-color: #fff;
+    margin: 0;
+    font-family: Lucida Grande, Verdana, sans-serif;
+    font-size: 12px;
+}
+
+p, td, th {
+    font-size: 13px;
+    text-align: justify;
+}
+
+.code {
+    font-size: 11px;
+    font-family: Monaco, monospace;
+}
+
+code, tt, pre {
+    font-family: Monaco, monospace;
+}
+
+code {
+    color: #00aa00;
+}
+
+
+/* messages */
+
+.message {
+    background-color: #fff;
+    padding: 3px 6px 2px 6px;
+    border-bottom: 1px solid #dddddd;
+    min-height: 16px;
+}
+
+.heading {
+    text-shadow: #888888 1px 1px;
+}
+
+.command {
+    color: #00aa00;
+}
+
+.value {
+    color: #0000dd;
+}
+
+/* labeled messages */
+.error, .warn, .info, .pass, .fail, .help, .load, .module {
+    background-position: 2px center;
+    background-color: #7777ff;
+    background-repeat: no-repeat;
+    padding-left: 24px;
+}
+
+/* yellow messages */
+.error, .warn {
+    background-color: #fefbee;
+}
+.error {
+    background-image: url(icons/cancel.png);
+    color: red;
+}
+.error * {
+    color: red;
+}
+.warn {
+    background-image: url(icons/error.png);
+}
+.warn * {
+    color: #d5a03c;
+}
+
+/* blue messages */
+.info, .info *, .help, .help * {
+    color: #eee;
+}
+.info {
+    background-image: url(icons/information.png);
+}
+.help {
+    background-image: url(icons/help.png);
+}
+.help > * {
+}
+
+/* gray messages */
+.load, .module {
+    background-color: #efefef;
+    border-top: solid 1px #ffffff;
+    border-bottom: solid 1px #aaaaaa;
+    color: #777;
+}
+.load *, .module * {
+    color: #777;
+}
+.load {
+    background-image: url(icons/database.png);
+}
+.module {
+    background-image: url(icons/brick.png);
+}
+.module a {
+    text-decoration: none;
+}
+.module a:hover {
+    text-decoration: underline;
+}
+
+/* green messages */
+.pass {
+    background-image: url(icons/accept.png);
+    background-color: #33aa33;
+    color: #eee;
+}
+.pass * {
+    color: #eee;
+}
+
+/* red messages */
+.fail {
+    background-image: url(icons/exclamation.png);
+    background-color: #ff5555;
+    color: #eee;
+}
+.fail * {
+    color: #eee;
+}
+
+
+/* widgets */
+
+#commandBar {
+    border-spacing: 0;
+    margin: 0;
+}
+#commandBar td.B {
+    width: 100%;
+    padding: 0 1ex;
+}
+#commandBar td.B input {
+    width: 100%;
+}
+
+#prompt {
+    font-family: Monaco, monospace;
+}
+
+#commandLine {
+    width: 100%;
+}
+
+.bottom {
+    width: 100%;
+}
+
+
+/* interactive tutorials */
+
+*[command] {
+    display: none;
+}
+
+.lesson {
+    border-top: 3px solid #dddddd;
+}
+

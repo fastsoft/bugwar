@@ -1,0 +1,12 @@
+#!/usr/bin/env python
+
+from bugwar_api import *
+from sys import argv
+
+if len(argv) == 3:
+	id = argv[1]
+	log_string = argv[2]
+	salvo = Salvo.objects.get(id)
+	salvo.log(log_string)
+else:
+	print "usage: bugwar_log salvo_id log_string"

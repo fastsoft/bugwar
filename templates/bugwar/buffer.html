@@ -1,0 +1,22 @@
+<div>
+{% for entry in log %}
+{% with entry.object as event %}
+<div class="label code message {{entry.label}}">
+    {% if entry.result %}
+        <a href="{{settings.BUGWAR_URL}}/result/{{event.id}}">{{event.label|upper|escape}}</a>
+        {{event.name|default_if_none:""|escape}}
+        {{event.message|default_if_none:""|escape|linebreaksbr}}
+    {% endif %}
+    {% if entry.measure %}
+        <a href="{{settings.BUGWAR_URL}}/measurement/{{event.id}}">MEASURE</a>
+        {{event.name|escape}} {{event.value|escape|linebreaksbr}}
+    {% endif %}
+    {% if entry.log %}
+        {{event.message|escape|linebreaksbr}}
+    {% endif %}
+    {% if entry.attachment %}
+    {% endif %}
+</div>
+{% endwith %}
+{% endfor %}
+</div>
