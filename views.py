@@ -1,6 +1,6 @@
 
 from django.http import HttpResponseRedirect
-from djata.views2 import *
+from djata.views import *
 from djata.formats.format_html_chart import HtmlChartModelFormat
 import bugwar.models as models
 import bugwar.settings
@@ -27,6 +27,7 @@ class Battery(BugwarView):
         default_page_length = 50
         default_page_number = -1
         index = 'name'
+        verbose_name_plural = 'batteries'
 
     def order(self, objects):
         return super(Battery, self).order(objects)
@@ -223,6 +224,7 @@ class Salvo(BugwarView):
         insecure = True
         default_page_length = 50
         default_page_number = -1
+        verbose_name_plural = 'salvos'
 
     class HtmlObjectFormat(HtmlObjectFormat):
         template = 'bugwar/salvo.html'
@@ -271,6 +273,7 @@ class Result(BugwarView):
         default_page_length = 50
         default_page_number = -1
         insecure = True
+        verbose_name_plural = 'results'
 
     def filter(self, objects):
         if 'battery_name' in self._request.GET:
@@ -282,7 +285,6 @@ class Result(BugwarView):
 
     def process_extra(self, request):
         context = request.context
-        context['settings'] = bugwar.settings
         context['embed'] = 'embed' in request.GET
 
     class HtmlModelFormat(HtmlModelFormat):
@@ -312,6 +314,7 @@ class Log(BugwarView):
         default_page_length = 800
         default_page_number = -1
         visible = False
+        verbose_name_plural = 'logs'
 
 class Measure(BugwarView):
     class Meta:
@@ -319,6 +322,7 @@ class Measure(BugwarView):
         default_page_length = 50
         default_page_number = -1
         visible = False
+        verbose_name_plural = 'measures'
 
     class HtmlModelFormat(HtmlModelFormat):
         template = 'bugwar/measures.html'
@@ -354,6 +358,7 @@ class Attachment(BugwarView):
         default_page_length = 800
         default_page_number = -1
         visible = False
+        verbose_name_plural = 'attachments'
 
 
 def datetime_cmp(a, b):

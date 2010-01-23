@@ -1,5 +1,8 @@
 
-from urllib import urljoin
+from urllib import basejoin as urljoin
+from os.path import join, dirname
+import djata
+import bugwar
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
@@ -15,6 +18,14 @@ DATABASE_HOST = ''              # Set to empty string for localhost. Not used wi
 DATABASE_PORT = ''              # Set to empty string for default. Not used with sqlite3.
 
 MEDIA_URL = '/media'
-BUGWAR_MEDIA_PREFIX = urljoin(MEIDA_URL, 'bugwar')
-ADMIN_MEDIA_PREFIX = urljoin(MEDIA_URL, 'django')
+BUGWAR_MEDIA_URL = urljoin(MEDIA_URL, 'bugwar')
+ADMIN_MEDIA_URL = urljoin(MEDIA_URL, 'django')
+
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    join(dirname(bugwar.__file__), 'templates'),
+    join(dirname(djata.__file__), 'templates'),
+)
 

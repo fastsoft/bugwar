@@ -62,8 +62,8 @@ def assert_eq(actual, oracle, name):
         success(name)
     else:
         result = failure(name)
-        result.log('expected: ' + oracle)
-        result.log('actual: ' + actual)
+        result.log('expected: %r' % oracle)
+        result.log('actual: %r' % actual)
 
 def test(function = None, name = None, raise_on_error = False):
     if function is None:
@@ -157,7 +157,7 @@ def warn(message, datetime = None):
 # djata api
 
 from djata_api import Model, Field, ForeignKey
-url = 'http://projects.fastsoft.com/bugwar/'
+url = 'http://bugwar.fastsoft.com/'
 
 from itertools import count
 next_creation_counter = count().next

@@ -78,6 +78,10 @@ INSTALLED_APPS = (
 try:
     import settings_local
     from settings_local import *
-except ImportError:
-    pass
+except ImportError, error:
+    message, = error.args
+    if not message.endswith(' %s' % 'settings_local'):
+    	import traceback
+	traceback.print_exc()
+    	raise
 

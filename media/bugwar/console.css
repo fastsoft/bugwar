@@ -1,7 +1,5 @@
 
 body {
-    min-height: 100%;
-    margin-bottom: 3em;
 }
 
 table {
@@ -19,6 +17,10 @@ table.table > tbody > tr > th {
     background-repeat: repeat-x;
     background-color: #bbbbbb;
     color: #ffffff;
+}
+
+table.table > tbody > tr > td {
+    vertical-align: top;
 }
 
 table > tr > th * {

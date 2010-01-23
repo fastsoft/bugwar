@@ -115,8 +115,8 @@ class Salvo(Model):
         super(Salvo, self).delete()
 
 class Battery(Model):
-    name = CharField(max_length = 512, unique = True)
-    #name = CharField(max_length = 512, primary = True)
+    name = CharField(max_length = 255, unique = True)
+    #name = CharField(max_length = 255, primary = True)
     #created = DateTimeField(auto_now_add = True)
 
     def __unicode__(self):
